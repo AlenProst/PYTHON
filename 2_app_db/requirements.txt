@@ -1,0 +1,13 @@
+Click==7.0
+Flask
+Flask-SQLAlchemy
+gunicorn
+itsdangerous
+Jinja2
+MarkupSafe
+SQLAlchemy
+Werkzeug
+pymysql
+mysql-connector-python
+Flask-MySQL
+markupsafe==2.0.1

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}  Home Page {% endblock %}
+
+{% block content %} 
+    <h1>This is code</h1>
+    <form action="/update/{{note_to_update}}" method="POST">
+        <input type="text" name="content" id="content" value="{{note_to_update1}}">
+        <input type="submit" value="Update">
+    </form>
+    
+    
+{% endblock %}

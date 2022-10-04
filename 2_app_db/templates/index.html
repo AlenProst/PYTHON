@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}  Home Page {% endblock %}
+
+{% block content %} 
+<h1>Notes</h1>
+<table>
+    <tr>
+        <th>Note</th>
+        <th>Date</th>
+        <th>Actions</th>
+    </tr>
+    {%  for notes in notes_saved %}
+   
+        <tr>
+            <td>{{ notes.note_db }}</td>
+            <td>{{ notes.date_created.date() }}</td>
+            <td>
+                <a href="/delete/{{notes.id}}">Delete</a>
+                <br>
+                <a href="/update/{{notes.id}}">Update</a>
+            </td>
+        </tr>
+    {%  endfor %}
+</table>
+
+<form action="/" method="POST">
+    <input type="text" name="the_note_entered_in_form" id="the_note_entered_in_form">
+    <input type="submit" value="Submit Note">
+
+
+
+</form>
+
+{% endblock %}
