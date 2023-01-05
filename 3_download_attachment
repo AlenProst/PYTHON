@@ -1,0 +1,77 @@
+def download_atachments():
+
+
+    def all_messages_with_attachments():
+
+        #endpoint = "https://graph.microsoft.com/v1.0/users?$filter=userType eq 'Member'"   
+        #endpoint = "https://graph.microsoft.com/v1.0/users/ivansto@b.dns-cloud.net/messages?$select=id"
+
+        endpoint = "https://graph.microsoft.com/v1.0/users/ivansto@b.dns-cloud.net/mailFolders/inbox/messages?$filter=hasAttachments eq true&$select=id,subject"
+
+        headers = {
+            'Authorization': access_token
+        }
+
+        graph_result = requests.get(url=endpoint, headers=headers)
+        data = graph_result.json()
+        counter = 1
+
+    
+        my_mail_id = []
+        for mailid in data['value']:
+            
+            print(counter)
+            print(mailid["subject"])
+            print(mailid["id"])
+            my_mail_id.append(mailid["id"])
+            counter +=1
+            
+        return my_mail_id 
+
+    save_folder=r"C:\Users\Ivan\Desktop\save"
+    list_of_id = all_messages_with_attachments()
+    counter = 1 
+    attach_id_list = []       
+    for mailid in list_of_id:
+        messageid = mailid
+        endpoint = "https://graph.microsoft.com/v1.0/users/ivansto@b.dns-cloud.net/mailFolders/inbox/messages/"
+        continue_endpoint = "{}/attachments".format(messageid)
+
+        url = endpoint + continue_endpoint
+        
+        #print("this is the url:{}".format(url))
+        headers = {
+            'Authorization': access_token
+        }
+
+        graph_result_attach = requests.get(url=url, headers=headers)
+        
+        data_attach = graph_result_attach.json()
+        
+        for attach_id in data_attach['value']:
+            #print(counter)
+            # print("MAILID{}".format(mailid))
+            # print(attach_id['id'])
+            attachment = attach_id['id']
+            filename = attach_id['name']
+            
+
+            endpoint = "https://graph.microsoft.com/v1.0/users/ivansto@b.dns-cloud.net/mailFolders/inbox/messages/"
+            continue_endpoint = "{}/attachments".format(mailid)
+            end_endpoint = "/{}/$value".format(attachment)
+
+            new_endpoint = endpoint + continue_endpoint + end_endpoint
+            print(new_endpoint)
+        
+            graph_result_attach = requests.get(url=new_endpoint, headers=headers)
+            print('Saving file {0}...'.format(filename))
+            with open(os.path.join(save_folder, filename), 'wb') as _f:
+                    _f.write(graph_result_attach.content)
+
+
+
+
+
+
+
+
