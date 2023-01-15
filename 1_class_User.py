@@ -12,13 +12,13 @@ class User:
         return "display_name: {}, mail_nickname: {}, account_enabled: {}, upn: {}, password: {}".format(self.display_name, self.mail_nickname, self.account_enabled, self.upn, self.password )
 
 
-    def create_user(self, display_name, mail_nickname, upn):
-        self.display_name = display_name
-        self.mail_nickname = mail_nickname
-        self.account_enabled = True
-        self.upn = upn
-        self.password = "O365user!"
-        self.usage_location = "BG"
+    def create_user(self):
+        display_name = self.display_name
+        mail_nickname = self.mail_nickname
+        account_enabled = True
+        upn = self.upn
+        password = "O365user!"
+        usage_location = "BG"
 
 
         access_token = token_creation()
@@ -30,16 +30,19 @@ class User:
 
         req_body = json.dumps(
             {
-            "accountEnabled": self.account_enabled,
-            "displayName": self.display_name,
-            "mailNickname": self.mail_nickname,
+            "accountEnabled": account_enabled,
+            "displayName": display_name,
+            "mailNickname": mail_nickname,
             "userPrincipalName": upn,
-            "usageLocation": self.usage_location,
+            "usageLocation": usage_location,
             "passwordProfile" : {
                 "forceChangePasswordNextSignIn": False,
-                "password": self.password
+                "password": password
             }
             }
             )
         
         requests.post(url=url, headers=headers, data=req_body)
+
+
+new_user = User("class1", "class1", "class1@b.dns-cloud.net")
