@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+        {% block title %} Edit {{ case.case }}'s Details
+        {% endblock %}
+
+    <form method="post">
+        <p>
+            <input type="text" name="case" value="{{case.case}}" placeholder="Please enter new value">
+            </input>
+        </p>
+
+        <p>
+            <button type="submit">Submit</button>
+        </p>
+    </form>
+{% endblock %}

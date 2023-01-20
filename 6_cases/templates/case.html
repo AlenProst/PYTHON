@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+        <h1>{% block title %} {{ case.case }} {% endblock %}</h1>
+        
+                <p><b>#{{ case.id }}</b></p>
+                <b>
+                    <p class="name">{{ case.case }}</p>
+
+    <form action='/test/' method = "POST">
+        <table>
+            <input type="hidden" id="custId" name="value" value="{{ case.value }}">
+            <input type="hidden" id="custId" name="case_id" value="{{ case.id }}">
+        <tr>
+            <th>Articles</th>
+        <tr>
+            <th>der<input type = "radio" name = "article"  value="der"/></th>   
+            <th>die<input type = "radio" name = "article"  value="die"/></th>
+            <th>das<input type = "radio" name = "article"  value="das"/></th>
+            <th>den<input type = "radio" name = "article"  value="den"/></th>
+            <th>dem<input type = "radio" name = "article"  value="dem"/></th>
+            <th>des<input type = "radio" name = "article"  value="des"/></th>
+        </tr>
+        <tr>
+            <th>ein<input type = "radio" name = "article"  value="ein"/></th>
+            <th>eine<input type = "radio" name = "article"  value="eine"/></th>
+            <th>einen<input type = "radio" name = "article"  value="einen"/></th>
+            <th>einem<input type = "radio" name = "article"  value="einem"/></th>
+            <th> einer<input type = "radio" name = "article"  value="einer"/></th>
+            <th> eines<input type = "radio" name = "article"  value="eines"/></th>
+        </tr>
+            <th>kein<input type = "radio" name = "article"  value="kein"/></th>
+            <th>keine<input type = "radio" name = "article"  value="keine"/></th>
+            <th>keinen<input type = "radio" name = "article"  value="keinen"/></th>
+            <th>keinem<input type = "radio" name = "article"  value="keinem"/></th>
+            <th>keiner<input type = "radio" name = "article"  value="keiner"/></th>
+        </tr>
+        <tr>
+            <th>NO ARTICLE<input type = "radio" name = "article"  value=""/></th>
+        </tr>
+        <tr>
+            <th>Adjectives</th>
+        <tr>
+            <th>guter<input type = "radio" name = "adj"  value="guter"/></th>
+            <th>gute<input type = "radio" name = "adj"  value="gute"/></th>
+            <th>guten<input type = "radio" name = "adj"  value="guten"/></th>
+            <th>gutem<input type = "radio" name = "adj"  value="gutem"/></th>
+            <th>gutes<input type = "radio" name = "adj"  value="gutes"/></th>
+        </tr> 
+        <tr>
+            <th>Nouns</th>
+        <tr>
+            <th>Mann<input type = "radio" name = "noun"  value="Mann"/></th>
+            <th>Mannes<input type = "radio" name = "noun"  value="Mannes"/></th>
+            <th>Männer<input type = "radio" name = "noun"  value="Männer"/></th>
+            <th>Männern<input type = "radio" name = "noun"  value="Männern"/></th>
+            <th>Frau<input type = "radio" name = "noun"  value="Frau"/></th>
+            <th>Frauen<input type = "radio" name = "noun"  value="Frauen"/></th>
+            <th>Kind<input type = "radio" name = "noun"  value="Kind"/></th>
+            <th>Kinder<input type = "radio" name = "noun"  value="Kinder"/></th>
+            <th>Kindes<input type = "radio" name = "noun"  value="Kindes"/></th>
+            <th>Kindern<input type = "radio" name = "noun"  value="Kindern"/></th>
+        </tr>   
+        <tr>
+            <th><input type="submit" name="submit" value="submit" class="btn btn-warning"></th>
+        </tr>        
+{% endblock %}
