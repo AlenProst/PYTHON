@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block head%}
+<title>Create Users</title>
+{% endblock %}
+
+{% block body%}
+<h1>This is create user</h1>
+<hr>
+<form action="/create_user/" method="POST">
+<h4>Please enter a DisplayName</h4>
+<input type="text" placeholder="DisplayName:" name="displayname" id="content" >
+<br>
+<h4>Please enter a DOMAIN</h4>
+<input type="text" placeholder="Domain:" name="domain" id="content" >
+<br>
+<input type="submit" value="create a user">
+
+<br>
+
+<table>
+    <tr>
+        <th>User</th>
+        <th>UserPrincipalName</th>
+        <th>Created</th>
+        <th>Actions</th>
+    </tr>
+    {% for task in tasks %}
+        <tr>
+            <td>{{ task.content }}</td>
+            <td>{{ task.upn }}</td>
+            <td>{{ task.date_created.date() }}</td>
+            <td>
+                <a href="/delete/{{task.id}}{{task.upn}}">Delete</a>
+                <br>
+                <a href="/update/{{task.id}}">Update</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+
+{% endblock %}
