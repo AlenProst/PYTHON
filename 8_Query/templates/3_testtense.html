@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>This is the ultimate test</h1>
+    
+
+
+    <form action="/answer/", method="POST">
+        <div id="choices">
+            <div> #{{words.id}} {{words.tense}} {{words.translation}}</div>
+            <div class="choice" draggable="true">{{words.el1}}</div>
+            <div class="choice" draggable="true">{{words.el2}}</div>
+            <div class="choice" draggable="true">{{words.el3}}</div>
+            {% if words.el4%}
+            <div class="choice" draggable="true">{{words.el4}}</div>
+            {% endif %}
+            <br>
+
+        </div>
+        <br>
+        <br>
+          
+
+          <input type="text" id="answer-input" name="answer-input">
+          <input type="hidden" id="answer-input" name="hidden_sentence" value="{{ words.content }}">
+          <input type="hidden" id="answer-input" name="hidden_id" value="{{ words.id }}">
+          
+          <button id="submitBtn">Submit</button>
+        </form>
+        
+    </body>
+    </html>
+
+    
+
+
+
+
+
+
+
+    
+    <script>
+    let choices = document.querySelectorAll('.choice');
+    let input = document.querySelector('#answer-input');
+    
+    for (let choice of choices) {
+      choice.addEventListener('dragstart', function(e) {
+        e.dataTransfer.setData('text/plain', this.textContent);
+      });
+    }
+    
+    input.addEventListener('dragover', function(e) {
+      e.preventDefault();
+    });
+    
+    input.addEventListener('drop', function(e) {
+      e.preventDefault();
+      this.value += " " + e.dataTransfer.getData('text/plain');
+    });
+    </script>
+    <script>
+      function shuffleDivs() {
+        const choices = document.getElementById("choices");
+        const divs = Array.from(choices.getElementsByClassName("choice"));
+        for (let i = divs.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [divs[i], divs[j]] = [divs[j], divs[i]];
+        }
+        divs.forEach((div) => choices.appendChild(div));
+      }
+      shuffleDivs();
+    </script>
+    
+</body>
+</html>
