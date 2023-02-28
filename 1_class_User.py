@@ -44,8 +44,13 @@ class User:
         
         requests.post(url=url, headers=headers, data=req_body)
 
+#We create the new user: 
 
-new_user = User("class1", "class1", "class1@b.dns-cloud.net")
+new_user = User("PYclass1", "PYclass1", "PYclass1@b.dns-cloud.net")
+
+#we invoke the method that creates the user 
+new_user.create_user()
+
 
 
 ## WITH A GLOBAL VARIABLE 
