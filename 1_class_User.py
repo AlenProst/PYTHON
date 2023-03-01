@@ -1,3 +1,6 @@
+import requests
+import json
+
 class User:
 
     def __init__(self, display_name, mail_nickname, upn):
@@ -46,7 +49,10 @@ class User:
 
 #We create the new user: 
 
-new_user = User("PYclass1", "PYclass1", "PYclass1@b.dns-cloud.net")
+name_of_user = "PYclass3"
+upn_of_user = name_of_user + "@b.dns-cloud.net"
+
+new_user = User(name_of_user, name_of_user, upn_of_user)
 
 #we invoke the method that creates the user 
 new_user.create_user()
